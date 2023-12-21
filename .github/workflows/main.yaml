@@ -16,6 +16,7 @@ jobs:
           - name: run_lint
             run: npm run lint            
     test:
+        needs: lint
         runs-on: ubuntu-20.04
         steps:
           - name: get_code
@@ -29,6 +30,7 @@ jobs:
           - name: run_test
             run: npm test
     build:
+        needs: test
         runs-on: ubuntu-20.04
         steps:
           - name: get_code
