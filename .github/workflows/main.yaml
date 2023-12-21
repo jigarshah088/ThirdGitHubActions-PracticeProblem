@@ -1,0 +1,45 @@
+#sample workflow
+name: node-js-sample
+on: push
+jobs: 
+    lint:
+        runs-on: ubuntu-20.04
+        steps:
+          - name: get_code
+            uses: actions/checkout@v3
+          - name: install_node
+            uses: actions/setup-node@v3
+            with: 
+              node-version: 18
+          - name: install_dependancies
+            run: npm ci
+          - name: run_lint
+            run: npm run lint            
+    test:
+        runs-on: ubuntu-20.04
+        steps:
+          - name: get_code
+            uses: actions/checkout@v3
+          - name: install_node
+            uses: actions/setup-node@v3
+            with: 
+              node-version: 18
+          - name: install_dependancies
+            run: npm ci     
+          - name: run_test
+            run: npm test
+    build:
+        runs-on: ubuntu-20.04
+        steps:
+          - name: get_code
+            uses: actions/checkout@v3
+          - name: install_node
+            uses: actions/setup-node@v3
+            with: 
+              node-version: 18
+          - name: install_dependancies
+            run: npm ci 
+          - name: run_build
+            run: npm run build
+          - name: mimik_build
+            run: echo "Deploying Build"
